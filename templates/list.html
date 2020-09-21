@@ -13,12 +13,13 @@
 
 {% block content %}
 <div class="container">
+    <a href="{% url 'create' %}" class="btn btn-primary" tabindex="-1" role="button" aria-disabled="true">新規作成</a>
     {% for todo in object_list %}
     <div class="alert alert-{{ todo.priority }}" role="alert">
-        <p>{{ todo.title }}</p>
-        <a href="#" class="btn btn-primary" tabindex="-1" role="button" aria-disabled="true">編集</a>
-        <a href="#" class="btn btn-danger" tabindex="-1" role="button" aria-disabled="true">削除</a>
-        <a href="#" class="btn btn-info" tabindex="-1" role="button" aria-disabled="true">詳細</a>
+        <p>{{ todo.title }}　期日：{{ todo.duedate }}</p>
+        <a href="{% url 'update' todo.pk %}" class="btn btn-primary" tabindex="-1" role="button" aria-disabled="true">編集</a>
+        <a href="{% url 'delete' todo.pk %}" class="btn btn-danger" tabindex="-1" role="button" aria-disabled="true">削除</a>
+        <a href="{% url 'detail' todo.pk %}" class="btn btn-info" tabindex="-1" role="button" aria-disabled="true">詳細</a>
     </div>
     {% endfor %}
 </div>
